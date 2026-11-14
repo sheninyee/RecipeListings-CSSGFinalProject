@@ -36,3 +36,15 @@
 .error {
   color: #d33;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.footer {
+  margin-top: 32px;
+  font-size: 14px;
+  color: var(--text-l);
+}

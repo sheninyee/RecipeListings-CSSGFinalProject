@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getExamples, createExample, type Example } from '../api'
-import './App.css'
+import '../App.css'
 
 function App() {
   const [examples, setExamples] = useState<Example[]>([])
@@ -45,7 +45,7 @@ function App() {
       {loading ? (
         <p>Loading...</p>
       ) : examples.length === 0 ? (
-        <p>No recipes yet. Add one above!</p>
+        <p>No recipes yet. Add one now!</p>
       ) : (
         <ul className="example-list">
           {examples.map((ex) => (
