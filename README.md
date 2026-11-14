@@ -108,7 +108,7 @@ Render → **New → Web Service** → connect your GitHub repo.
 
 **Environment variables:** `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `CORS_ORIGIN=http://localhost:5173` (temporary).
 
-**Where's my URL?** At the top of the service page, under its name, e.g. `https://my-api.onrender.com`.
+**Where's my URL?** At the top of the service page, under its name, e.g. `https://my-api.onrender.com` or `http://localhost:3000/health`.
 ✅ Check: open `https://my-api.onrender.com/health` and expect `{"ok":true}`.
 
 ### Step 2: Frontend → Vercel
