@@ -48,3 +48,35 @@
   font-size: 14px;
   color: var(--text-l);
 }
+
+.create-recipe-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.create-recipe-form input {
+  flex: 1;
+  padding: 8px 12px;
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.create-recipe-form textarea {
+  flex: 1;
+  padding: 8px 12px;
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.create-recipe-form button {
+  padding: 8px 16px;
+  font: inherit;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

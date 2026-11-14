@@ -32,7 +32,7 @@ function App() {
     <main className="app">
       <h1>Create a New Recipe</h1>
 
-      <form onSubmit={handleSubmit} className="recipe-name">
+      <form onSubmit={handleSubmit} className="create-recipe-form">
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -53,6 +53,16 @@ function App() {
           ))}
         </ul>
       )}
+
+    <form onSubmit={handleSubmit} className="create-recipe-form">
+        <textarea
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="New recipe description"
+        />
+        <button type="submit">Save</button>
+      </form>
+
     </main>
   )
 }
