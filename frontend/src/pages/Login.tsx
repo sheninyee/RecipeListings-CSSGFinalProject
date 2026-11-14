@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { Link } from 'react-router'
 
-function App() {
+function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -35,8 +36,11 @@ function App() {
         />
         <button type="submit">Sign In</button>
       </form>
+      <p>Don't have an account? <a href="/signup">Sign up</a></p>
+
+      {error && <p className="error">{error}</p>}
     </main>
   )
 }
 
-export default App
+export default Login
