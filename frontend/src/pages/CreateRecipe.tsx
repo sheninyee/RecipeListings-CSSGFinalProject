@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react'
-import { getExamples, createExample, type Example } from '../api'
+import { getRecipes, createRecipe, type Recipe } from '../api'
 import '../App.css'
 
-function App() {
-  const [examples, setExamples] = useState<Example[]>([])
+function CreateRecipe() {
+  const [recipes, setRecipes] = useState<Recipe[]>([])
   const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getExamples()
-      .then(setExamples)
+    getRecipes()
+      .then(setRecipes)
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false))
   }, [])
@@ -19,9 +20,10 @@ function App() {
     e.preventDefault()
     if (!title.trim()) return
     try {
-      const created = await createExample(title)
-      setExamples((prev) => [created, ...prev])
+      const created = await createRecipe(title, description)
+      setRecipes((prev) => [created, ...prev])
       setTitle('')
+      setDescription('')
       setError(null)
     } catch (err) {
       setError((err as Error).message)
@@ -38,33 +40,39 @@ function App() {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="New recipe name"
         />
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="New recipe description"
+        />
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Ingredients needed"
+        />
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Tools needed"
+        />
+
         <button type="submit">Add</button>
       </form>
 
       {error && <p className="error">{error}</p>}
       {loading ? (
         <p>Loading...</p>
-      ) : examples.length === 0 ? (
+      ) : recipes.length === 0 ? (
         <p>No recipes yet. Add one now!</p>
       ) : (
         <ul className="example-list">
-          {examples.map((ex) => (
-            <li key={ex.id}>{ex.title}</li>
+          {recipes.map((recipe) => (
+            <li key={recipe.id}>{recipe.title}</li>
           ))}
         </ul>
       )}
-
-    <form onSubmit={handleSubmit} className="create-recipe-form">
-        <textarea
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="New recipe description"
-        />
-        <button type="submit">Save</button>
-      </form>
-
     </main>
   )
 }
 
-export default App
+export default CreateRecipe

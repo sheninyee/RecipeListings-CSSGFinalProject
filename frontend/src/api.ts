@@ -27,3 +27,39 @@ export function createExample(title: string) {
     body: JSON.stringify({ title }),
   });
 }
+
+
+
+// For recipe listings, we can define a Recipe type and functions to get and create recipes.
+export type Recipe = {
+  id: number;
+  profile_id: number;
+  title: string;
+  description: string | null;
+  ingredients: string | null;
+  tools: string | null;
+  created_at: string;
+  last_edited_at: string;
+  deleted_at: string | null;
+};
+
+async function requestRecipe<T>(path: string, options?: RequestInit): Promise<T> {
+  const res = await fetch(`${BASE_URL}${path}`, {
+    headers: { 'Content-Type': 'application/json' },
+    ...options,
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || `Request failed: ${res.status}`);
+  return data;
+}
+
+export function getRecipes() {
+  return request<Recipe[]>('/api/recipe');
+}
+
+export function createRecipe(title: string, description: string) {
+  return request<Recipe>('/api/recipe', {
+    method: 'POST',
+    body: JSON.stringify({ title, description }),
+  });
+}
