@@ -33,7 +33,7 @@ export function createExample(title: string) {
 // For recipe listings, we can define a Recipe type and functions to get and create recipes.
 export type Recipe = {
   id: number;
-  profile_id: number;
+  profile_id: number;   // need to add auth to get this!
   title: string;
   description: string | null;
   ingredients: string | null;
@@ -57,9 +57,9 @@ export function getRecipes() {
   return request<Recipe[]>('/api/recipe');
 }
 
-export function createRecipe(title: string, description: string) {
+export function createRecipe(title: string, description: string, ingredients: string, tools: string) {
   return request<Recipe>('/api/recipe', {
     method: 'POST',
-    body: JSON.stringify({ title, description }),
+    body: JSON.stringify({ title, description, ingredients, tools }),
   });
 }

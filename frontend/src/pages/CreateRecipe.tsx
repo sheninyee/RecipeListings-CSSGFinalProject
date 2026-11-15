@@ -6,6 +6,8 @@ function CreateRecipe() {
   const [recipes, setRecipes] = useState<Recipe[]>([])
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [ingredients, setIngredients] = useState('')
+  const [tools, setTools] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -20,10 +22,12 @@ function CreateRecipe() {
     e.preventDefault()
     if (!title.trim()) return
     try {
-      const created = await createRecipe(title, description)
+      const created = await createRecipe(title, description, ingredients, tools)
       setRecipes((prev) => [created, ...prev])
       setTitle('')
       setDescription('')
+      setIngredients('')
+      setTools('')
       setError(null)
     } catch (err) {
       setError((err as Error).message)
@@ -46,13 +50,13 @@ function CreateRecipe() {
           placeholder="New recipe description"
         />
         <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={ingredients}
+          onChange={(e) => setIngredients(e.target.value)}
           placeholder="Ingredients needed"
         />
         <textarea
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          value={tools}
+          onChange={(e) => setTools(e.target.value)}
           placeholder="Tools needed"
         />
 
